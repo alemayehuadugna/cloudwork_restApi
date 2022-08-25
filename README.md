@@ -1,2 +1,7 @@
 # clean-node-ts-api
-Node.js Template Api  with Clean Architecture 
+Used:- Express, Node.js with Clean Architecture
+
+install dependencies:- npm i
+
+
+run code:- npm run dev
