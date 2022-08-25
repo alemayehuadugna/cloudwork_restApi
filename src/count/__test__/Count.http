@@ -1,0 +1,8 @@
+@baseUrl = http://localhost:3000/api
+
+
+# @name get_counts
+GET {{baseUrl}}/counts
+Content-Type: application/json
+
+

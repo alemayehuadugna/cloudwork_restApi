@@ -1,0 +1,33 @@
+@token = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOnsidmFsdWUiOiJlNTllZGU0Ni03NjA4LTQyNDYtYmUxNi1hNGRiMjkwNjQyZWQifSwic2NvcGUiOlsidXNlciJdLCJpYXQiOjE2NDc4NTAxOTZ9.5-EYrfIBXAjan33EHSjaZMhqrEQit5GWn9I0vCiwkT4
+
+GET {{hostname}}/api/users/me
+Authorization: {{token}}
+
+###
+
+###
+POST http://localhost:3000/api/feedbacks
+Content-Type: application/json
+
+{
+    "firstName": "testthree",
+    "lastName": "sewuye",
+    "message": "test test test",
+    "title": "wow wow"
+}
+
+###
+
+GET {{hostname}}/api/feedbacks
+
+###
+GET {{hostname}}/api/feedbacks?filter[title]=test&filter[firstName]=test
+
+###
+POST {{hostname}}/api/users/login
+Content-Type: application/json
+
+{
+    "phone": "+251975654294",
+    "password": "testtest"
+}

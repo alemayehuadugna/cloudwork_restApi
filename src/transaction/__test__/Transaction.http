@@ -1,0 +1,84 @@
+@baseUrl = http://localhost:3000/api
+
+@token = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOnsidmFsdWUiOiI3YTZmNzBmOC0yYmZiLTQyMzAtOWJmMy1jMTM0MzJlNzFjY2EifSwic2NvcGUiOlsiQ2xpZW50Il0sImlhdCI6MTY1NTg1ODk1N30.8-lAZaUaM5cCZNqTVGIEET8_IxsUDhBHjNWOmv6MuuQ
+@adminToken = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOnsidmFsdWUiOiI0ODBjYTE3ZC01NzM2LTRmZTctODg2MS00OTgxNjQ3YTlmYjEifSwic2NvcGUiOlsiRW1wbG95ZWUiLCJBZG1pbiJdLCJpYXQiOjE2NTU1NDA2Mzh9._cLnifVeF9w6byh8BplyZB-btwgDE3ekI3xoQn-aZDk
+
+###
+#  @name Register_new_Freelancer
+POST {{baseUrl}}/freelancers
+Content-Type: application/json
+
+{
+	"firstName": "Shaka",
+	"lastName":"Zulu",
+	"phone": "988554477",
+	"email": "shakazulu@Gmail.com",
+	"password": "test@test",
+	"isPolicyAgreed": true
+}
+
+###
+POST {{baseUrl}}/clients/login
+Content-Type: application/json
+
+{
+	"email": "janedoe@gmail.com",
+	"password": "test@test"
+}
+
+###
+POST {{baseUrl}}/transactions/chapa/deposit
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+	"amount": 100
+}
+
+###
+POST {{baseUrl}}/transactions/chapa/hook
+Content-Type: application/json
+
+{
+	"email": "shakazulu@Gmail.com",
+	"password": "test@test"
+}
+
+
+###
+POST {{baseUrl}}/transactions/withdraw
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+	"amount": 500,
+	"tnxBy": "CBE"
+}
+
+###
+POST {{baseUrl}}/transactions/deposit
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+	"amount": 1000,
+	"tnxBy": "BOA",
+	"tnxNumber": "TNX1596357"
+}
+
+###
+GET {{baseUrl}}/transactions
+Authorization: {{token}}
+
+
+###
+PATCH  {{baseUrl}}/transactions/approve/446832e7-1782-42ee-8d6f-a013b19c5c55
+Authorization: {{token}}
+
+###
+PATCH  {{baseUrl}}/transactions/cancel/f48aa925-f43b-4c3e-9a20-ff1e5a23ef24
+Authorization: {{token}}
+
+###
+PATCH  {{baseUrl}}/transactions/hold/c8c000fb-6ef4-4448-91a4-972db043f71a
+Authorization: {{token}}

@@ -1,0 +1,172 @@
+@baseUrl = http://localhost:3000/api
+
+@token = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOnsidmFsdWUiOiI4NzFjMDA4MS03OTEwLTQ2MDUtOTNhNy0yMzU5Y2NhY2M0ZDcifSwic2NvcGUiOlsiQ2xpZW50Il0sImlhdCI6MTY1NTgyMjg3N30.eRuLxy0yXT2i58BrUh2wiIwD8rOQ9HpSkDeL9dH6Lxk
+
+###
+
+POST {{baseUrl}}/clients/login
+Content-Type: application/json
+
+{
+	"email": "biruk@gmail.com",
+	"password": "@testtest"
+}
+
+###
+POST {{baseUrl}}/clients
+Content-Type: application/json
+
+{
+    "firstName": "biruk",
+    "lastName": "molla",
+    "phone": "+251967684294",
+    "email": "biruk@gmail.com",
+    "password": "@testtest"
+}
+
+
+###
+POST {{baseUrl}}/clients/me/send/otp
+Content-Type: application/json
+
+{
+	"email": "alex@gmail.com"
+}
+
+
+### 
+POST {{baseUrl}}/clients/forgotPassword
+Content-Type: application/json
+
+{
+	"email": "biruk@gmail.com"
+}
+###
+POST {{baseUrl}}/clients/me/verify/email
+Content-Type: application/json
+
+{
+	"code": "5146",
+	"email": "biruk@gmail.com"
+}
+
+###
+GET  {{baseUrl}}/clients
+Authorization: {{token}}
+
+###
+GET  {{baseUrl}}/clients?page=1&limit=1
+Authorization: {{token}}
+
+### 
+GET {{baseUrl}}/clients/me/basic
+Authorization: {{token}}
+
+###
+GET {{baseUrl}}/clients/me/detail
+Authorization: {{token}}
+
+
+###
+GET {{baseUrl}}/clients/me/favorites?page=1&limit=1
+Authorization: {{token}}
+
+###
+GET  {{baseUrl}}/clients/47452602-812f-46d8-ac79-2a397c60a6b3
+
+###
+PATCH {{baseUrl}}/clients/de37eaeb-b6c1-4528-ba7c-13faee1d4a7b/state
+Content-Type: application/json
+
+{
+	"state": "ACTIVE"
+}
+
+###
+PATCH {{baseUrl}}/clients/me/basic
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+	"firstName": "Biruk",
+	"lastName":"Molla",
+	"email": "birukmolla30@gmail.com",
+	"phone": "+251906284545"
+}
+
+###
+PATCH {{baseUrl}}/clients/me/updateAddress
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+	"region": "Amhara",
+	"city": "Bahir dar"
+}
+
+###
+PATCH {{baseUrl}}/clients/me/updateProfileOverview
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+	"companyName": "Sheger",
+	"websiteUrl": "sheeger.com"
+}
+
+###
+PATCH  {{baseUrl}}/clients/me/changePassword
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+	"oldPassword": "12345678",
+	"newPassword": "testtest"
+}
+
+###
+PATCH  {{baseUrl}}/clients/verify/de9182b2-7ffa-45da-892b-7bdb747e5d82
+
+###
+PATCH {{baseUrl}}/clients/me/updateDescription
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+	"description": "this is test"
+}
+
+
+###
+PATCH {{baseUrl}}/clients/me/updateSocialLinks
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+	"socialLinks": [
+		{ "socialMedia": "Twitter", "link": "http://twitter.com/johnDoe1234"},
+		{ "socialMedia": "Linkdin", "link": "https://linkdin.com/johnDoe1234"}
+		]
+}
+
+
+#  !add and remove favorites
+###
+PATCH {{baseUrl}}/clients/me/addFavorite
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+	"freelancerId": "5f249674-ae78-4f7f-9efa-b7d226140fc9"
+}
+
+###
+
+DELETE {{baseUrl}}/clients/me/delete
+Authorization:  {{token}}
+Content-Type: application/json
+
+{
+	"reason": "this is a reason",
+	"password": "@testtest"
+}

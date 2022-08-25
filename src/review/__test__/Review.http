@@ -1,0 +1,22 @@
+@baseUrl = http://localhost:3000/api
+
+@token = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOnsidmFsdWUiOiJiZjg4MTRjYi01Y2RkLTRlNDgtOTk4Ny0yZTk5NGE5NjExMTgifSwic2NvcGUiOlsiRnJlZWxhbmNlciJdLCJpYXQiOjE2NTU1MzcyODJ9.-xE0v9hGqh6lRY_cSvIRlhU2w0WfZhUu45VPoTb-qqM
+
+###
+POST {{baseUrl}}/reviews
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+	"jobId": "59c70b13-5e28-4c96-bdc0-577f8ef20bc4",
+	"reviewerId": "7a6f70f8-2bfb-4230-9bf3-c13432e71cca",
+	"reviewedId": "bf8814cb-5cdd-4e48-9987-2e994a961118",
+	"title": "Does not meet deadline",
+	"comment": "Curabitur aliquet quam id dui posuere blandit. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Donec rutrum congue leo eget malesuada.",
+	"rate": 3.7
+}
+
+###
+GET {{baseUrl}}/users/7a6f70f8-2bfb-4230-9bf3-c13432e71cca/reviews
+Authorization: {{token}}
+

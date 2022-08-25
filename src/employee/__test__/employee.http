@@ -1,0 +1,95 @@
+@token = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOnsidmFsdWUiOiIwNjkyMzc0ZS00NjljLTQwYWUtOWFmYi04Y2ZmZTc1ZTVlYTkifSwic2NvcGUiOlsiRW1wbG95ZWUiXSwiaWF0IjoxNjU3MzcxMDgxfQ.vPm7QGXhZmx0SDILHETXNC5eCUA54kbPjoip4TNF_70
+
+
+@baseUrl = http://localhost:3000/api
+
+# @name auth
+POST {{baseUrl}}/employees/login
+Content-Type: application/json
+
+{
+    "email": "shakazulu@gmail.com",
+    "password": "test@test"
+}
+
+###
+# @name create
+POST {{baseUrl}}/employees
+Content-Type: application/json
+
+{
+    "firstName": "shaka",
+    "lastName": "zulu",
+    "phone": "966332200",
+    "email": "shakazulu@gmail.com",
+    "gender": "Male"
+}
+
+###
+# @name get
+GET {{baseUrl}}/employee/me
+Authorization: Bearer {{token}}
+
+###
+# @name list
+GET {{baseUrl}}/list/employees?page=1&limit=4&filter[gender]=Male&sort[]=-firstName
+Authorization: Bearer {{ token }}
+
+
+###
+# @name delete
+DELETE {{baseUrl}}/employees/88d1eeb0-7e4c-4e96-a119-f14cab7dd812
+
+###
+# @name update
+PATCH {{baseUrl}}/update/employees/aa59d680-3527-4d56-a36e-6f6cd92af38e
+Content-Type: application/json
+
+{
+    "firstName": "Alex",
+    "lastName": "Adugna",
+    "phone": "000000001",
+    "email": "bontu@gmail.com",
+    "gender": "Female"
+}
+
+###
+# @name search
+GET {{baseUrl}}/search/employees?filter[searchItem]=b
+
+###
+# @name deactivate
+PATCH {{baseUrl}}/employees/deactivate/1966d53f-5d4e-438b-a51f-1951943229e0
+Content-Type: application/json
+
+{
+    "state": "ACTIVE"
+}
+
+###
+# @name updateBasic
+PATCH {{baseUrl}}/employees/me/basic
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+	"firstName": "Brook",
+	"lastName":"Doe",
+	"email": "birukmolla30@gmail.com"
+}
+
+###
+# @name passwordChanged
+PATCH  {{baseUrl}}/employees/me/changePassword
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+	"oldPassword": "test@test",
+	"newPassword": "passpass"
+}
+
+DELETE {{baseUrl}}/clients/2833e320-d774-4df3-a4b5-379b719791a2
+Authorization: {{token}}
+
+

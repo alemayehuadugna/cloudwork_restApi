@@ -1,0 +1,242 @@
+@baseUrl = http://localhost:3000/api
+
+##skills#
+# @name create
+POST {{baseUrl}}/jobs
+Content-Type: application/json
+
+{
+    "clientId": "deb87044-2da5-4df4-a031-1743c2929230",
+    "title": "Futter Developer",
+    "category": "Java Expert",
+    "language": "English",
+    "budget": 5000,
+    "duration": 2,
+    "skills": ["java", "fx", "sql"],
+    "expiry": "2022-08-27",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+}
+
+
+###
+# @name listAll
+GET {{baseUrl}}/jobs
+
+###
+# @name listAllForUser
+GET {{baseUrl}}/jobs/user/deb87044-2da5-4df4-a031-1743c2929230
+
+
+###
+# @name listAllForFreelancer
+GET {{baseUrl}}/jobs/freelancer/45c0b17e-8e5c-4027-a6f9-99a9613f2524?page=1&limit=10&filter[progress]=CANCELLED
+
+### 
+# @name listActive
+GET {{baseUrl}}/jobs?page=1&limit=4&filter[progress]=ACTIVE
+
+### 
+# @name listInactive
+GET {{baseUrl}}/jobs?page=13&limit=10&filter[progress]=INACTIVE
+
+### 
+# @name listDeleted
+GET {{baseUrl}}/jobs?page=1&limit=4&filter[progress]=DELETED
+
+### 
+# @name listCompleted
+GET {{baseUrl}}/jobs?page=1&limit=4&filter[progress]=COMPLETED
+
+### 
+# @name listCancelled
+GET {{baseUrl}}/jobs?page=1&limit=4&filter[progress]=CANCELLED
+
+###
+# @name cancelledJob
+PATCH {{baseUrl}}/update/progress/25853e46-810e-45f6-aa55-404bb7ace054
+Content-Type: application/json
+
+{
+    "progress": "CANCELLED"
+}
+
+###
+# @name completedJob
+PATCH {{baseUrl}}/update/progress/ded42d85-57eb-4fd2-a22e-a09e0c314531
+Content-Type: application/json
+
+{
+    "progress": "COMPLETED"
+}
+
+###
+# @name inactiveJob
+PATCH {{baseUrl}}/update/progress/ab1be8ed-60d1-4814-be07-ce3677fa4f26
+Content-Type: application/json
+
+{
+    "progress": "INACTIVE"
+}
+
+### 
+# @name "filter by experience, startDate" 
+GET {{baseUrl}}/jobs?page=1&limit=4&filter[startDate][]=2022-04-01&filter[startDate][]=2022-04-03&filter[experience]=0-1
+
+###
+# @name updateJob
+PATCH {{baseUrl}}/update/job/f343876d-dc03-4ddb-9951-c421bed585cf
+Content-Type: application/json
+
+{
+    "title": "3D Animator",
+    "category": "Java Expert",
+    "language": "English",
+    "budget": 5000,
+    "duration": 2,
+    "skills": ["java", "fx", "sql"],
+    "expiry": "2022-08-27",
+    "links": ["www.google.com"],
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+}
+
+###
+# @name updateProgress
+PATCH {{baseUrl}}/update/progress/25853e46-810e-45f6-aa55-404bb7ace054
+Content-Type: application/json
+
+{
+    "clientId": "909a56a9-cbda-4f68-a0e9-3c0513853a7e", 
+    "freelancerId": "45c0b17e-8e5c-4027-a6f9-99a9613f2524",
+    "progress": "CANCELLED"
+}
+
+###
+# @name addBid
+PATCH {{baseUrl}}/add/bid/6b1c054a-21ca-4e1e-870a-d881fef48626
+Content-Type: application/json
+
+{
+    "freelancerId": "45c0b17e-8e5c-4027-a6f9-99a9613f2524",
+    "budget": 890,
+    "hours": 100,
+    "coverLetter": "description",
+    "isTermsAndConditionAgreed": true
+}
+
+###
+# @name markDelete 
+DELETE {{baseUrl}}/jobs/67f2c9dd-c6b3-4bd1-9bb9-a9b86a34ffe0
+
+###
+# @name deleteForever 
+DELETE {{baseUrl}}/jobs/forEver/5e334b4c-ec0c-411b-bd37-5ad6f3c7f24b
+
+### 
+# @name getJob-for-customer
+GET {{baseUrl}}/jobs/customers/80105a4b-cbfa-445e-8e81-16a7ec1204de
+
+### 
+# @name getJob-for-employees
+GET {{baseUrl}}/jobs/employees/80105a4b-cbfa-445e-8e81-16a7ec1204de
+
+### 
+# @name getJob
+GET {{baseUrl}}/jobs/25853e46-810e-45f6-aa55-404bb7ace054
+
+
+### 
+# @name getJobForFreelancer
+GET {{baseUrl}}/jobs/freelancer/detail/48443e3a-e4ac-472b-8b55-9f5f9f21bfb9
+
+###
+# @name search-job
+GET {{baseUrl}}/jobs/search?filter[searchItem]=alex
+
+
+###
+# @name addBid
+PATCH {{baseUrl}}/add/bid/39128991-87e0-43eb-8d50-1c1a8545a2b1
+Content-Type: application/json
+
+{
+    "freelancerId": "9c9a5f3e-ba2d-4f72-9f2f-cf2ac9826525",
+    "budget": 2500,
+    "hours": 100,
+    "coverLetter": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    "isTermsAndConditionAgreed": true
+}
+
+###
+# @name editBid
+PATCH {{baseUrl}}/edit/bid/ccf63047-4e0d-42e1-9aa7-b21aded097a3
+Content-Type: application/json
+
+{
+    "freelancerId": "83015c6a-d868-4bde-8acf-9e30f95894ee",
+    "budget": 6000,
+    "hours": 100,
+    "coverLetter": "i am tying"
+}
+
+###
+# @name listBid
+PATCH  {{baseUrl}}/list/bids/250b9124-53b1-4b77-a649-061a8ada7170
+
+
+###
+# @name deleteBid
+PATCH {{baseUrl}}/delete/bid/1f7b3a23-011f-4108-810e-96e417fb2633
+Content-Type: application/json
+
+{
+    "freelancerId": "d02519e9-54ef-4755-a4a4-2332c400f877"
+}
+
+###
+# @name hireFreelancer
+PATCH  {{baseUrl}}/jobs/hire/294ff563-e7bd-4a43-9d08-c661ce4b0ccf
+Content-Type: application/json
+
+{
+    "freelancerId": "45c0b17e-8e5c-4027-a6f9-99a9613f2524", 
+    "clientId": "deb87044-2da5-4df4-a031-1743c2929230", 
+    "amount": 2500
+}
+
+###
+# @name addMilestone
+PATCH {{baseUrl}}/add/milestone/ccf63047-4e0d-42e1-9aa7-b21aded097a3
+Content-Type: application/json
+
+{
+    "name": "milestone two",
+    "budget": 800,
+    "startDate": "2022-06-12T17:05:46.060+00:00", 
+    "endDate": "2022-07-12T17:05:46.060+00:00",
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+}
+
+###
+# @name listMilestone
+PATCH {{baseUrl}}/list/milestones/ccf63047-4e0d-42e1-9aa7-b21aded097a3?page=1&limit=2
+Content-Type: application/json
+
+{
+    "type": "all"
+}
+
+###
+# @name payFreelancer
+PATCH  {{baseUrl}}/jobs/payFreelancer/25853e46-810e-45f6-aa55-404bb7ace054
+Content-Type: application/json
+
+{
+    "milestoneId": "8281820a-3940-4532-99be-847a97135f39",
+    "freelancerId": "45c0b17e-8e5c-4027-a6f9-99a9613f2524", 
+    "clientId": "909a56a9-cbda-4f68-a0e9-3c0513853a7e", 
+    "amount": 500
+}
+
+###
+# @name listBidForFreelancer
+PATCH  {{baseUrl}}/list/bids/freelancer/45c0b17e-8e5c-4027-a6f9-99a9613f2524

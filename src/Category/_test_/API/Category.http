@@ -1,0 +1,31 @@
+@hostname = http://localhost:3000/api
+@token = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOnsidmFsdWUiOiJlNTllZGU0Ni03NjA4LTQyNDYtYmUxNi1hNGRiMjkwNjQyZWQifSwic2NvcGUiOlsidXNlciJdLCJpYXQiOjE2NDc4NTAxOTZ9.5-EYrfIBXAjan33EHSjaZMhqrEQit5GWn9I0vCiwkT4
+
+###
+# @name create
+POST {{hostname}}/categories
+Content-Type: application/json
+
+{
+    "categoryName": "Developement",
+    "subCategory": ["App Developement","Web Developement", "Descktop App"]
+}
+
+###
+# @name listAll
+GET {{hostname}}/categories
+
+###
+# @name updateCategorie
+PATCH {{hostname}}/categories/fa29a811-9502-43ec-8779-2d4878a6f8a2
+Content-Type: application/json
+
+{
+
+    "categoryName": "new",
+    "subCategory": ["o","n","e"]
+}
+###
+# @name deleteForever 
+DELETE {{hostname}}/categories/c75159b0-9e2b-4af5-90f5-f471ee9eb4dc
+###

@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.index/
+*.log
+.idea/
+.vscode/
+coverage/
+file_storage/
+.env.development

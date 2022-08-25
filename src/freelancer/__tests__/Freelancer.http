@@ -1,0 +1,336 @@
+@baseUrl = http://localhost:3000/api
+
+@token = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOnsidmFsdWUiOiJmZWExNGE4MC02MmMzLTRjNWUtOWU1My1hMjQyNmRiN2I3MDEifSwicm9sZXMiOlsiRnJlZWxhbmNlciJdLCJpYXQiOjE2NTU5Mjg5OTV9.CcTpiEoelIQa2VqSkv8u5L6pcb7lK6LGLuaexg5Fhtw
+@clientToken = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOnsidmFsdWUiOiI3YTZmNzBmOC0yYmZiLTQyMzAtOWJmMy1jMTM0MzJlNzFjY2EifSwic2NvcGUiOlsiQ2xpZW50Il0sImlhdCI6MTY1NTgwNjczOH0._wXfwZs__7WLJ6DfwOdvswxzYeXKsBQCnw1Nox3DFuQ
+@adminToken = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOnsidmFsdWUiOiI0ODBjYTE3ZC01NzM2LTRmZTctODg2MS00OTgxNjQ3YTlmYjEifSwic2NvcGUiOlsiRW1wbG95ZWUiLCJBZG1pbiJdLCJpYXQiOjE2NTU4ODk4Mzl9.9ssxlyJMYx1o3XHqe4S6sB2EiHdFUc2SY5hcJYqL3sA
+
+###
+POST {{baseUrl}}/freelancers/login
+Content-Type: application/json
+
+{
+	"email": "mansa@gmail.com",
+	"password": "test@test"
+}
+
+###
+GET {{baseUrl}}/freelancers
+Authorization: {{adminToken}}
+
+###
+PATCH {{baseUrl}}/freelancers/identify-verify/bf8814cb-5cdd-4e48-9987-2e994a961118
+Authorization: {{adminToken}}
+
+###
+GET {{baseUrl}}/freelancers/5dbb7006-e0eb-44d0-bbd3-d8d97058a543
+Authorization: {{clientToken}}
+
+###
+#
+#  !Register new Freelancer
+POST {{baseUrl}}/freelancers
+Content-Type: application/json
+
+{
+	"firstName": "mansa",
+	"lastName":"musa",
+	"phone": "932103252",
+	"email": "mansa@gmail.com",
+	"password": "test@test",
+	"isPolicyAgreed": true
+}
+
+### 
+# !Get Freelancer By its Id
+GET {{baseUrl}}/freelancers/me/detail
+Authorization: {{token}}
+
+### 
+# !Get Freelancer Resend Verification Code
+POST {{baseUrl}}/freelancers/me/otp/forget
+Content-Type: application/json
+
+{
+	"email": "JohnDoe@mail.com"
+}
+
+### 
+# !Verify Freelancer With Email
+POST {{baseUrl}}/freelancers/me/verify/email
+Content-Type: application/json
+
+{
+	"code": "4623",
+	"email": "ab@gmail.com"
+}
+
+### 
+# !Update Freelancers Main Service
+PATCH  {{baseUrl}}/freelancers/me/main-service
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+	"category": "Accounting & Consulting",
+	"subcategory": "Human Resources"
+}
+
+### 
+# @name Change_Freelancers_Password
+PATCH  {{baseUrl}}/freelancers/me/change-password
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+	"oldPassword": "pass@pass",
+	"newPassword": "test@test"
+}
+
+### 
+# @name Delete_Freelancers_Account
+DELETE  {{baseUrl}}/freelancers/me/delete
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+	"reason": "this is a test",
+	"password": "test@test"
+}
+
+###
+#
+# @name Remove_Existing_Other_Experience_by_Id
+DELETE {{baseUrl}}/freelancers/me/otherExperiences/625756a3aa5039d6177cd07c
+Authorization: {{token}}
+
+### 
+# !Edit Freelancers Other Expereince
+PATCH  {{baseUrl}}/freelancers/me/otherExperiences/625756a3aa5039d6177cd07c
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+	"subject": "don't know what",
+	"description": "Nulla est consectetur voluptate deserunt aliqua deserunt voluptate deserunt minim esse ea. Mollit irure excepteur ad laboris fugiat qui fugiat aliquip esse exercitation quis sit eu sint. Cupidatat incididunt ut nisi nostrud laborum minim Lorem sit irure est nulla duis tempor deserunt. Labore aliquip nisi et minim laboris sit. Culpa voluptate consectetur excepteur dolore.Sunt tempor nulla cillum irure. Tempor esse exercitation do qui duis ullamco eiusmod non duis quis exercitation sunt dolor. Ad ex Lorem sint pariatur. Incididunt consectetur dolor deserunt excepteur sit dolore aute. Duis fugiat anim qui id aute incididunt Lorem veniam ad cillum laborum cillum consequat elit."
+}
+
+### 
+# !Add Freelancers Other Expereince
+POST {{baseUrl}}/freelancers/me/otherExperiences
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+	"subject": "loream epsum 2",
+	"description": "Nulla est consectetur voluptate deserunt aliqua deserunt voluptate deserunt minim esse ea. Mollit irure excepteur ad laboris fugiat qui fugiat aliquip esse exercitation quis sit eu sint. Cupidatat incididunt ut nisi nostrud laborum minim Lorem sit irure est nulla duis tempor deserunt. Labore aliquip nisi et minim laboris sit. Culpa voluptate consectetur excepteur dolore.Sunt tempor nulla cillum irure. Tempor esse exercitation do qui duis ullamco eiusmod non duis quis exercitation sunt dolor. Ad ex Lorem sint pariatur. Incididunt consectetur dolor deserunt excepteur sit dolore aute. Duis fugiat anim qui id aute incididunt Lorem veniam ad cillum laborum cillum consequat elit."
+}
+
+### 
+# @name Update_Freelancers_Social_Links
+PATCH  {{baseUrl}}/freelancers/me/socials
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+	"socialLinks": [
+		{ "socialMedia": "Twitter", "link": "http://twitter.com/johnDoe1234"},
+		{ "socialMedia": "Linkdin", "link": "https://linkdin.com/johnDoe1234"}
+		]
+}
+
+###
+#
+# !Remove Existing Educations by Id
+DELETE {{baseUrl}}/freelancers/me/educations/62701ea1f6627d1a385e6c74
+Authorization: {{token}}
+
+### 
+# !Update Freelancers Educations by Id
+PATCH  {{baseUrl}}/freelancers/me/educations/62701ea1f6627d1a385e6c74
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+	"institution": "AASTU",
+	"dateAttended": { "start": "2018-02-02", "end": "2022-02-02" },
+	"degree": "Masters",
+	"areaOfStudy": "Electrical Engineering",
+	"description": "Nulla est consectetur voluptate deserunt aliqua deserunt voluptate deserunt minim esse ea. Mollit irure excepteur ad laboris fugiat qui fugiat aliquip esse exercitation quis sit eu sint. Cupidatat incididunt ut nisi nostrud laborum minim Lorem sit irure est nulla duis tempor deserunt. Labore aliquip nisi et minim laboris sit. Culpa voluptate consectetur excepteur dolore.Sunt tempor nulla cillum irure. Tempor esse exercitation do qui duis ullamco eiusmod non duis quis exercitation sunt dolor. Ad ex Lorem sint pariatur. Incididunt consectetur dolor deserunt excepteur sit dolore aute. Duis fugiat anim qui id aute incididunt Lorem veniam ad cillum laborum cillum consequat elit."
+}
+
+### 
+# !Add Freelancers Education
+POST {{baseUrl}}/freelancers/me/educations
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+	"institution": "AASTU",
+	"dateAttended": { "start": "2018-02-02", "end": "2022-02-02" },
+	"degree": "Undergraguate",
+	"areaOfStudy": "Software Engineering",
+	"description": "Nulla est consectetur voluptate deserunt aliqua deserunt voluptate deserunt minim esse ea. Mollit irure excepteur ad laboris fugiat qui fugiat aliquip esse exercitation quis sit eu sint. Cupidatat incididunt ut nisi nostrud laborum minim Lorem sit irure est nulla duis tempor deserunt. Labore aliquip nisi et minim laboris sit. Culpa voluptate consectetur excepteur dolore.Sunt tempor nulla cillum irure. Tempor esse exercitation do qui duis ullamco eiusmod non duis quis exercitation sunt dolor. Ad ex Lorem sint pariatur. Incididunt consectetur dolor deserunt excepteur sit dolore aute. Duis fugiat anim qui id aute incididunt Lorem veniam ad cillum laborum cillum consequat elit."
+}
+
+###
+#
+# !Remove Existing Employment by Id
+DELETE {{baseUrl}}/freelancers/me/employments/626eabb98335a80c2319ac5d
+Authorization: {{token}}
+
+### 
+# !Update Freelancers Employmnet by Id
+PATCH  {{baseUrl}}/freelancers/me/employments/626eabb98335a80c2319ac5d
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+	"company": "Apex",
+	"city": "Asosa",
+	"region": "Gumuz",
+	"title": "Backend Developer",
+	"period": { "start": "2020-02-02", "end": "2022-02-02" },
+	"summary": "Ea do sit consectetur mollit cillum ipsum do cillum enim voluptate minim. Tempor laborum ea ad commodo in magna aliqua Lorem esse consectetur pariatur. Non mollit irure deserunt eu ex minim occaecat. Dolor excepteur et sint pariatur ea reprehenderit ad culpa tempor aliqua ad qui. Sint quis incididunt ipsum veniam cupidatat voluptate proident fugiat. Lorem commodo deserunt laborum tempor ad ex aliquip aliquip sit. Fugiat nisi nisi dolor occaecat incididunt aute labore. Consectetur incididunt ipsum sunt dolor enim eu nulla elit ex magna sunt nisi irure. Cillum occaecat excepteur officia minim minim elit."
+}
+
+### 
+# !Add Freelancers Employmnet
+POST {{baseUrl}}/freelancers/me/employments
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+	"company": "Google",
+	"city": "Semera",
+	"region": "Afar",
+	"title": "App Developer",
+	"period": { "start": "2021-02-02", "end": "2022-02-02" },
+	"summary": "Ea do sit consectetur mollit cillum ipsum do cillum enim voluptate minim. Tempor laborum ea ad commodo in magna aliqua Lorem esse consectetur pariatur. Non mollit irure deserunt eu ex minim occaecat. Dolor excepteur et sint pariatur ea reprehenderit ad culpa tempor aliqua ad qui. Sint quis incididunt ipsum veniam cupidatat voluptate proident fugiat. Lorem commodo deserunt laborum tempor ad ex aliquip aliquip sit. Fugiat nisi nisi dolor occaecat incididunt aute labore. Consectetur incididunt ipsum sunt dolor enim eu nulla elit ex magna sunt nisi irure. Cillum occaecat excepteur officia minim minim elit."
+}
+
+### 
+# !Update Freelancers Languages
+PATCH  {{baseUrl}}/freelancers/me/languages
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+	"languages": [
+		{ "language": "Amharic", "proficiencyLevel": "Fluent"},
+		{ "language": "English", "proficiencyLevel": "Conversational"}
+	]
+}
+
+### 
+# !Update Freelancers Skills
+PATCH  {{baseUrl}}/freelancers/me/skills
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+	"skills": ["Vue.js", "Node.js", "Javascript", "Dart", "Flutter"]
+}
+
+###
+# !Update Freelancer overview
+PATCH  {{baseUrl}}/freelancers/me/overview
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+	"overview": "Et sunt id quis officia incididunt eiusmod dolore ut commodo adipisicing mollit. Nisi enim aute veniam culpa. Exercitation adipisicing labore sit commodo. Ad ad et aliqua dolore. Id quis cillum dolore eu. Non nisi consequat minim ullamco. Ullamco do eu veniam laborum commodo veniam cillum velit excepteur quis ea mollit officia voluptate. Aute reprehenderit cillum in consectetur est consequat elit Lorem. Laborum dolor amet dolore magna pariatur tempor deserunt do occaecat anim. Laboris in non adipisicing ad ad cupidatat pariatur. Qui et elit sint commodo ad reprehenderit sit id fugiat amet incididunt tempor laboris. Consectetur labore ea sit anim quis fugiat dolore. Consectetur eiusmod magna officia culpa non eiusmod irure Lorem ea fugiat amet commodo et. Ea ex fugiat magna do Lorem ipsum voluptate enim. Commodo ea qui id eiusmod tempor aute ipsum. Quis non labore commodo consequat deserunt ea fugiat. Lorem adipisicing proident qui cupidatat Lorem. Amet Lorem tempor dolore quis occaecat. Tempor tempor esse fugiat dolor elit nisi fugiat anim. Nulla veniam laborum veniam deserunt enim et laboris proident duis culpa velit eiusmod magna fugiat. Cillum laboris excepteur do in labore quis laborum mollit do incididunt laborum commodo. Enim tempor qui non et Lorem non quis. Adipisicing laboris nisi veniam magna incididunt incididunt."
+}
+
+
+###
+# !Remove Exsitsting Portfolio
+DELETE {{baseUrl}}/freelancers/me/portfolios/6256689d55445e127b81d27b
+Authorization: {{token}}
+
+###
+# !Edit Exsitsting Portfolio
+PATCH  {{baseUrl}}/freelancers/me/portfolios/625682dc30d031c7e982f60e
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+	"title": "edit test",
+	"projectUrl": "http://test.edit.url",
+	"projectDescription": "this is edited test",
+	"skills": ["API Dev", "Vue.Js"]
+}
+
+###
+#
+# !Add New Portfolio
+POST {{baseUrl}}/freelancers/me/portfolios
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+	"title": "test",
+	"projectUrl": "http://test.url",
+	"projectDescription": "this is for test",
+	"skills": ["API Dev", "Vue.Js"]
+}
+
+###
+#
+# !Update Freelancer address
+PATCH  {{baseUrl}}/freelancers/me/address HTTP/1.1
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+	"region": "Oromia",
+	"city": "Adama"
+}
+
+
+###
+#
+# !Update Freelancers Expertise
+PATCH  {{baseUrl}}/freelancers/me/expertise
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+	"expertise": "Backend Developer"
+}
+
+
+###
+#
+# !Update Basic Freelancer Info
+PATCH {{baseUrl}}/freelancers/me/basic
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+	"firstName": "John",
+	"lastName":"Doe",
+	"available": "Full Time",
+	"gender": "Male"
+}
+
+###
+# Get freelnacer by id
+GET {{baseUrl}}/freelancers/2d5e23ca-1e93-4777-9da4-3c73e2050c67
+Authorization: {{token}}
+
+###
+DELETE {{baseUrl}}/freelancers/abd96d35-13c4-4519-8fd0-2b076292063c
+Authorization: {{token}}
+
+
+###
+PATCH {{baseUrl}}/freelancers/79cdefb8-488f-421b-9dcb-642fd5f220d0/state
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+	"state": "ACTIVE"
+}
+
+###
+GET {{baseUrl}}/freelancers/search?page=1&limit=8&filter[searchItem]=jane

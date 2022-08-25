@@ -1,0 +1,25 @@
+@baseUrl = http://localhost:3000/api
+
+@token = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOnsidmFsdWUiOiI5MDlhNTZhOS1jYmRhLTRmNjgtYTBlOS0zYzA1MTM4NTNhN2UifSwic2NvcGUiOlsiQ2xpZW50Il0sImlhdCI6MTY1NTE1OTYzMn0.d7239nsytvCPELNJ2405a-2rlcMfUp-eK3ZzLyiX91M
+
+###
+POST {{baseUrl}}/freelancers/login
+Content-Type: application/json
+
+{
+	"email": "alex@gmail.com",
+	"password": "@testtest"
+}
+
+###
+POST {{baseUrl}}/clients/login
+Content-Type: application/json
+
+{
+	"email": "alex@gmail.com",
+	"password": "@testtest"
+}
+
+###
+GET {{baseUrl}}/wallet/me
+Authorization: {{token}}
