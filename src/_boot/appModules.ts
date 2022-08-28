@@ -20,8 +20,10 @@ import { transactionModule, TransactionRegistry } from "@/transaction";
 import { walletModule, WalletRegistry } from "@/wallet";
 import { ReviewMessages } from "@/review/messages";
 import { reviewModule, ReviewRegistry } from "@/review";
-import { CountMessages } from "@/task/messages";
 import { countModule, CountRegistry } from "@/count";
+import { CountMessages } from "@/count/messages";
+import { milestoneModule, MilestoneRegistry } from "@/milestone";
+import { MilestoneMessages } from "@/milestone/messages";
 
 
 type AppModuleMessages =
@@ -38,7 +40,8 @@ type AppModuleMessages =
 	WalletMessages &
 	TransactionMessages &
 	ClientMessages &
-	ReviewMessages;
+	ReviewMessages &
+	MilestoneMessages;
 
 type AppModuleConfig = {};
 
@@ -56,6 +59,7 @@ const appModules = [
 	transactionModule,
 	clientModule,
 	countModule,
+	milestoneModule
 ];
 
 type AppModulesRegistry =
@@ -71,7 +75,8 @@ type AppModulesRegistry =
 	WalletRegistry &
 	TransactionRegistry &
 	ClientRegistry &
-	CountRegistry;
+	CountRegistry &
+	MilestoneRegistry;
 
 
 export { appModules };
